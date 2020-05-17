@@ -19,6 +19,16 @@ const typeDefs = gql`
 
         obtenerTecnologia : [Tecnologia]
     }
+
+    input UsuarioInput {
+        nombre:String!
+        email:String!
+        password : String!
+    }
+
+    type Mutation {
+        crearUsuario(input: UsuarioInput) : String
+    }
 `;
 
 module.exports= typeDefs

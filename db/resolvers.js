@@ -24,6 +24,14 @@ const resolvers ={
         obtenerCuros : ()=> cursos,
 
         obtenerTecnologia : ()=>  cursos
+    },
+
+    Mutation :{
+        crearUsuario: (_,{input})=>{
+            
+            console.log(input)
+            console.log("Creando Usuario")
+    }
     }
 }
 
