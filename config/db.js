@@ -7,7 +7,7 @@ const conectarDB = async () =>{
     try{
 
         await mongoose.connect(
-            'mongodb+srv://mono:mono34512744@cluster0-h6s4u.mongodb.net/prueba?retryWrites=true&w=majority',
+            'mongodb+srv://mono:mono34512744@cluster0-h6s4u.mongodb.net/uptask',
              { useNewUrlParser: true, useUnifiedTopology: true,useFindAndModify : false,useCreateIndex: true });
         
         console.log("DB Conectada")
