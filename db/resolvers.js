@@ -15,6 +15,12 @@ const crearToken =(usuario,secreta,expiresIn)=>{
 
 const resolvers ={
     Query : {
+
+        obtenerProyectos : async (_,{},ctx) =>{
+            const proyectos = await Proyecto.find({creador: ctx.usuario.id})
+
+            return proyectos
+        }
         
     },
 
