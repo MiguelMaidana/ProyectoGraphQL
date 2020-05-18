@@ -1,5 +1,16 @@
 const Usuario = require("../models/usuario")
 const bcrypts = require("bcryptjs")
+const jwt = require("jsonwebtoken")
+require("dotenv").config({path: "../variables.env"})
+
+// crea y firma un JWT
+
+const crearToken =(usuario,secreta,expiresIn)=>{
+    console.log(usuario)
+    const {id,email} = usuario
+    return jwt.sign({id,email},secreta,{expiresIn})
+
+}
 
 const resolvers ={
     Query : {
@@ -59,7 +70,9 @@ const resolvers ={
 
         // Dar acceso a la app
 
-        return "Has Iniciado Sesion"
+        return {
+            token : crearToken(existeUsuario,process.env.SECRETA,"2hr")
+        }
     }
     }
 }
