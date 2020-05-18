@@ -94,7 +94,33 @@ const resolvers ={
             }catch(error){
                 console.log(error)
             }
-       } 
+       },
+       
+       actualizarProyecto : async (_,{id,input}, ctx) =>{
+
+        // revisar que el proyecto exista
+
+        let proyecto = await Proyecto.findById(id)
+
+
+        if(!proyecto){
+            throw new Error ("Proyecto no encontrado")
+        }
+
+        // verificar que si la persona que trata de editarlo es el creador
+
+        if(proyecto.creador.toString() !== ctx.usuario.id){
+            throw new Error ("No tienes las credenciakes para editar")
+
+        }
+
+        // Guardar el proyecto
+
+        proyecto= await Proyecto.findOneAndUpdate({_id:id}, input , {new: true})
+
+        return proyecto
+
+       }
 
     }
 }
