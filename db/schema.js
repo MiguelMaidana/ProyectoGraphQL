@@ -57,6 +57,7 @@ const typeDefs = gql`
 
         # Tareas
         nuevatarea(input : TareaInput) : Tarea
+        actualizartarea(id:ID!, input:TareaInput,estado:Boolean) : Tarea
     }
 `;
 
