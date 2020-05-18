@@ -12,7 +12,7 @@ const ProyectoSquema = moongose.Schema({
         ref : "Usuario"
     },
     creado :{
-        type: DataCue,
+        type: Date,
         default : Date.now()
     }
 })
