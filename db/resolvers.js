@@ -205,6 +205,33 @@ const resolvers ={
 
        return tarea
 
+       },
+
+       eliminarTarea : async (_,{id}, ctx)=>{
+
+          // si la tarea existe o no 
+        
+          let tarea = await Tarea.findById(id)
+
+          if(!tarea){
+              throw new Error ("Tarea no encontrada")
+  
+          }
+  
+          // si la persona que edita es el creador
+  
+  
+          if(tarea.creador.toString() !== ctx.usuario.id){
+              throw new Error ("No tienes las credenciakes para editar")
+  
+          }
+
+          // Eliminar
+
+          await Tarea.findOneAndDelete({_id:id})
+
+          return " Tarea Eliminada"
+
        }
 
     }
