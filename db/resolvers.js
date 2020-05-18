@@ -1,5 +1,6 @@
 const Usuario = require("../models/usuario")
 const Proyecto = require("../models/Proyecto")
+const Tarea = require("../models/Tarea")
 const bcrypts = require("bcryptjs")
 const jwt = require("jsonwebtoken")
 require("dotenv").config({path: "../variables.env"})
@@ -154,6 +155,21 @@ const resolvers ={
         return "Proyecto Eliminado"
 
 
+       },
+
+
+       nuevatarea : async (_,{input}, ctx) =>{
+            try{
+                const tarea = new Tarea(input)
+                tarea.creador = ctx.usuario.id
+
+                const resultado = await tarea.save()
+                return resultado
+
+                
+            }catch(error){
+                console.log(error)
+            }
        }
 
     }
