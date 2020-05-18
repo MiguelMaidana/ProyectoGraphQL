@@ -21,6 +21,11 @@ const resolvers ={
             const proyectos = await Proyecto.find({creador: ctx.usuario.id})
 
             return proyectos
+        },
+        obtenerTareas : async (_,{input},ctx) =>{
+            const tareas = await Tarea.find({creador : ctx.usuario.id}).where("proyecto").equals(input.proyecto)
+            
+            return tareas
         }
         
     },
@@ -79,7 +84,7 @@ const resolvers ={
         // Dar acceso a la app
 
         return {
-            token : crearToken(existeUsuario,process.env.SECRETA,"2hr")
+            token : crearToken(existeUsuario,process.env.SECRETA,"4hr")
         }
      },
        nuevoProyecto : async (_,{input},ctx) =>{
