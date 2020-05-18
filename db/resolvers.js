@@ -126,6 +126,34 @@ const resolvers ={
 
         return proyecto
 
+       },
+
+       eliminarProyecto : async(_,{id},ctx)=>{
+
+
+        // revisar que el proyecto exista
+
+        let proyecto = await Proyecto.findById(id)
+
+
+        if(!proyecto){
+            throw new Error ("Proyecto no encontrado")
+        }
+
+        // verificar que si la persona que trata de editarlo es el creador
+
+        if(proyecto.creador.toString() !== ctx.usuario.id){
+            throw new Error ("No tienes las credenciakes para editar")
+
+        }
+
+        // Eliminar 
+
+        await Proyecto.findOneAndDelete({_id : id})
+
+        return "Proyecto Eliminado"
+
+
        }
 
     }
