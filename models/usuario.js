@@ -10,7 +10,8 @@ const UsuariosSchema= mongoose.Schema({
         type : String,
         required : true,
         trim : true,
-        unique : true // que no se repitan los mails
+        unique : true, // que no se repitan los mails
+        lowercase : true
 
     },
     password :{

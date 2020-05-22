@@ -8,9 +8,10 @@ require("dotenv").config({path: "../variables.env"})
 // crea y firma un JWT
 
 const crearToken =(usuario,secreta,expiresIn)=>{
-    console.log(usuario)
-    const {id,email} = usuario
-    return jwt.sign({id,email},secreta,{expiresIn})
+   // console.log(usuario)
+    const {id,email,nombre} = usuario
+    
+    return jwt.sign({id,email,nombre},secreta,{expiresIn})
 
 }
 
